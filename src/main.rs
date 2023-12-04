@@ -5,11 +5,13 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 fn main() {
-    //day1();
-    //day2();
-    day3();
+    // day1();
+    // day2();
+    // day3();
+    day4();
 }
 
 fn day1() {
@@ -31,5 +33,12 @@ fn day3() {
     assert_eq!(test_res.0,4361);
     assert_eq!(test_res.1,467835);
     let res = day3::run("puzzle_input/day3.txt");
+    println!("{:?}",res);
+}
+fn day4() {
+    let test_res = day4::run("sample_data/day4.txt");
+    assert_eq!(test_res.0,13);
+    assert_eq!(test_res.1,30);
+    let res = day4::run("puzzle_input/day4.txt");
     println!("{:?}",res);
 }

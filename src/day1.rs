@@ -19,7 +19,7 @@ fn read_data(file_name: &str) -> Vec<usize> {
             r.clone()
         };
         r.push_str(&add);
-            usize::from_str_radix(&r,10).expect("Parse failed")
+            r.parse::<usize>().expect("Parse failed")
     } else {
         0
     }
@@ -37,12 +37,12 @@ fn read_data_pt2(file_name: &str) -> Vec<usize> {
     .lines()
     .map(|x| {
         let mut changed = x.replace("three","t3e");
-        changed = (&changed).replace("nine","n9e");
-        changed = (&changed).replace("seven","s7n");
-        changed = (&changed).replace("one","o1e");
-        changed = (&changed).replace("two","t2o");
-        changed = (&changed).replace("five","f5e");
-        changed = (&changed).replace("eight","e8t");
+        changed = changed.replace("nine","n9e");
+        changed = changed.replace("seven","s7n");
+        changed = changed.replace("one","o1e");
+        changed = changed.replace("two","t2o");
+        changed = changed.replace("five","f5e");
+        changed = changed.replace("eight","e8t");
         //println!("{}", changed);
     if let Some(n) = RE.captures(&changed) {
       //  println!("{:?}",n);
@@ -53,7 +53,7 @@ fn read_data_pt2(file_name: &str) -> Vec<usize> {
             r.clone()
         };
         r.push_str(&add);
-            usize::from_str_radix(&r,10).expect("Parse failed")
+            r.parse::<usize>().expect("Parse failed")
     } else {
         panic!("Failed to capture");
     }
@@ -73,11 +73,11 @@ let fname = if file.contains("sample") {
 println!("{:?}",fname);
 
 let p2 = read_data_pt2(fname).iter().sum();
-return (p1,p2);
+(p1,p2)
 }
 
 fn parse_word(s: String) -> String {
-    if let Ok(_) = usize::from_str_radix(&s,10) {
+    if s.parse::<usize>().is_ok() {
         s
     } else {
         match s.as_str() {

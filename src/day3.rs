@@ -5,7 +5,7 @@ pub fn run (filename: &str) -> (usize,usize) {
     let data = read_data(filename);
     let p1 = p1(&data);
     let p2 = p2(&data);
-    return (p1,p2);
+    (p1,p2)
 }
 
 fn read_data(file: &str) -> Vec<Vec<char>> {
@@ -25,11 +25,11 @@ struct Part{
     fin: (usize,usize),
 }
 
-fn parse_parts(data:&Vec<Vec<char>>) -> Vec<Part> {
+fn parse_parts(data:&[Vec<char>]) -> Vec<Part> {
     let mut res = Vec::new();
     let mut pn = String::new();
     let mut st = (0,0);
-    let mut fin = (0,0);
+    let mut fin;
     let mut midpart = false;
     for (rownum,row) in data.iter().enumerate(){
         for (colnum,item) in row.iter().enumerate(){
@@ -64,7 +64,7 @@ fn parse_parts(data:&Vec<Vec<char>>) -> Vec<Part> {
         pn.drain(..);
     }
 
-    return res
+    res
 }
 
 fn is_valid_part(pn: &Part, data: &Vec<Vec<char>>) -> bool {
@@ -83,7 +83,7 @@ fn is_valid_part(pn: &Part, data: &Vec<Vec<char>>) -> bool {
             rownum += 1;
         }
     }
-    return false
+    false
 }
 
 fn p1(data: &Vec<Vec<char>>) -> usize {
@@ -91,7 +91,7 @@ fn p1(data: &Vec<Vec<char>>) -> usize {
     parts.iter().filter(|p| is_valid_part(p, data)).map(|p| p.pn).sum()
 }
 
-fn p2(data: &Vec<Vec<char>>) -> usize {
+fn p2(data: &[Vec<char>]) -> usize {
     let gears = find_gears(data);
     let mut ratios = Vec::new();
     for gear in gears {
@@ -103,7 +103,7 @@ fn p2(data: &Vec<Vec<char>>) -> usize {
 }
 
 
-fn find_gears(data: &Vec<Vec<char>>) -> Vec<(usize,usize)> {
+fn find_gears(data: &[Vec<char>]) -> Vec<(usize,usize)> {
     let mut res = Vec::new();
     for (rownum, row) in data.iter().enumerate() {
         for (colnum, val) in  row.iter().enumerate(){
@@ -113,10 +113,10 @@ fn find_gears(data: &Vec<Vec<char>>) -> Vec<(usize,usize)> {
         }
     }
 
-    return res
+    res
 }
 
-fn find_gear_ratio(gear: (usize, usize), data: &Vec<Vec<char>>) -> Option<usize> {
+fn find_gear_ratio(gear: (usize, usize), data: &[Vec<char>]) -> Option<usize> {
     let left_corner = (gear.0.saturating_sub(1),gear.1.saturating_sub(1));
     let right_corner = (min(gear.0+1,data.len()-1),min(gear.1+1,data.len()-1));
 
@@ -132,18 +132,18 @@ fn find_gear_ratio(gear: (usize, usize), data: &Vec<Vec<char>>) -> Option<usize>
     }
 
     if parts.len() == 2 {
-        return Some(parts.iter().fold(1,|acc,x| acc*x));
+        return Some(parts.iter().product());
     }
 
-    return None
+    None
 
 }
 
-fn map_parts(data:&Vec<Vec<char>>) -> HashMap<(usize,usize),Part> {
+fn map_parts(data:&[Vec<char>]) -> HashMap<(usize,usize),Part> {
     let mut res = HashMap::new();
     let mut pn = String::new();
     let mut st = (0,0);
-    let mut fin = (0,0);
+    let mut fin;
     let mut midpart = false;
     for (rownum,row) in data.iter().enumerate(){
         for (colnum,item) in row.iter().enumerate(){
@@ -186,5 +186,5 @@ fn map_parts(data:&Vec<Vec<char>>) -> HashMap<(usize,usize),Part> {
         pn.drain(..);
     }
 
-    return res
+    res
 }

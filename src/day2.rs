@@ -14,7 +14,7 @@ pub fn run(file: &str) -> (usize,usize)  {
     let games = read_data(file);
     let p1 = pt1(&games);
     let p2 = pt2(&games);
-    return (p1,p2);
+    (p1,p2)
 }
 
 #[derive(Debug,Default)]
@@ -34,10 +34,10 @@ fn read_data(file: &str) -> Vec<Game> {
     .lines()
     .map(|x| {
         let mut game = Game{..Default::default()};
-        if let Some((gid,gnums)) = x.split_once(":") {
+        if let Some((gid,gnums)) = x.split_once(':') {
             game.id = gid.trim_start_matches(char::is_alphabetic).trim().parse::<usize>().unwrap();
-            for round in gnums.split(";") {
-                    for sequence in round.split(","){
+            for round in gnums.split(';') {
+                    for sequence in round.split(','){
                     let cap = RE.captures(sequence).expect("Failed to match regex");
                     match &cap[2] {
                         "red" => {
@@ -67,10 +67,10 @@ fn pt1(games: &Vec<Game>) -> usize{
             res += game.id;
         }
     }
-    return res
+    res
 }
 
-fn pt2(games: &Vec<Game>) -> usize{
+fn pt2(games: &[Game]) -> usize{
    games.iter().map(|game| {
     game.red * game.blue * game.green
    }).sum()
