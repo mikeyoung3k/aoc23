@@ -1,18 +1,19 @@
 #![allow(dead_code)]
 
-
-
 mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 fn main() {
     // day1();
     // day2();
     // day3();
-    day4();
+    // day4();
+    day5();
 }
+
 
 fn day1() {
     let test_res = day1::run("sample_data/day1.txt");
@@ -40,5 +41,12 @@ fn day4() {
     assert_eq!(test_res.0,13);
     assert_eq!(test_res.1,30);
     let res = day4::run("puzzle_input/day4.txt");
+    println!("{:?}",res);
+}
+fn day5() {
+    let test_res = day5::run("sample_data/day5.txt");
+    assert_eq!(test_res.0,35);
+    assert_eq!(test_res.1,46);
+    let res = day5::run("puzzle_input/day5.txt");
     println!("{:?}",res);
 }

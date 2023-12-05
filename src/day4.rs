@@ -1,5 +1,4 @@
 use std::collections::{HashMap,HashSet};
-use std::ops::RangeInclusive;
 
 pub fn run(filename: &str) -> (usize,usize) {
     let data = read_data(filename);
@@ -56,7 +55,7 @@ fn pt1(data: &HashMap<usize,Card>) -> usize {
 
 fn pt2(data: &HashMap<usize,Card>) -> usize {
     let win_table = build_win_table(data);
-    data.len() + win_table.iter().map(|(_,s)| s ).sum::<usize>()
+    data.len() + win_table.values().sum::<usize>()
 }
 
 fn build_win_table(data: &HashMap<usize,Card>) -> HashMap<usize,usize> {
