@@ -64,7 +64,7 @@ impl Map {
 fn parse_map(lines: &mut std::str::Lines) ->Map {
     let mut diff = Vec::new();
     let mut src = Vec::new();
-    while let Some(x) = lines.next() {
+    for x in lines.by_ref() {
         if x.is_empty() {
             break
         }
@@ -81,11 +81,11 @@ fn parse_map(lines: &mut std::str::Lines) ->Map {
 }
 
 fn pt1(mapping: &Mappings) -> i64 {
-    mapping.seeds.iter().map(|seed| seed_to_location(seed,&mapping)).min().expect("Failed to find min")
+    mapping.seeds.iter().map(|seed| seed_to_location(seed,mapping)).min().expect("Failed to find min")
 }
 
 fn pt2(mapping: &Mappings) -> i64 {
-    seeds_from_mapping(mapping).iter().map(|seed| seed_to_location(seed,&mapping)).min().expect("Failed to find min")
+    seeds_from_mapping(mapping).iter().map(|seed| seed_to_location(seed,mapping)).min().expect("Failed to find min")
 }
 
 fn seed_to_location(seed: &i64, mapping: &Mappings) -> i64 {
@@ -124,7 +124,7 @@ fn is_seed(loc: i64, mapping: &Mappings) -> bool {
     let rngs = strt.zip(lens);
 
     for (&s,&l) in rngs {
-        if seed >= s && seed <= s+l-1 {
+        if seed >= s && seed < s+l {
             return true
         }
     }
