@@ -162,7 +162,7 @@ fn parse_cards(cards: &str) -> (Cards,Vec<Card>) {
 fn parse_cards_2(cards: &str) -> (Cards,Vec<Card>) {
     let mut map: HashMap<char,usize> = HashMap::new();
     let mut all_cards = Vec::new();
-    let mut cards_iter = cards.chars();
+    let cards_iter = cards.chars();
 
     for card in cards_iter {
         let fake_card = if card == 'J' {

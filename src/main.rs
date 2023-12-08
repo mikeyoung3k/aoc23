@@ -7,6 +7,7 @@ mod day4;
 mod day5;
 mod day6;
 mod day7;
+mod day8;
 
 fn main() {
     // day1();
@@ -15,7 +16,8 @@ fn main() {
     // day4();
     // day5();
     // day6();
-    day7();
+    // day7();
+    day8();
 }
 
 
@@ -67,4 +69,15 @@ fn day7() {
     assert_eq!(test_res.1,5905);
     let res = day7::run("puzzle_input/day7.txt");
     println!("{:?}",res);
+}
+fn day8() {
+    let test_res = day8::run_p1("sample_data/day8-1.txt");
+    assert_eq!(test_res,2);
+    let test_res = day8::run_p1("sample_data/day8-2.txt");
+    assert_eq!(test_res,6);
+    let test_res = day8::run_p2("sample_data/day8-3.txt");
+    assert_eq!(test_res,6);
+    let res_1 = day8::run_p1("puzzle_input/day8.txt");
+    let res_2 = day8::run_p2("puzzle_input/day8.txt");
+    println!("{:?}",(res_1,res_2));
 }
