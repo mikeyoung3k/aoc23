@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#![feature(iter_map_windows)]
 
 mod day1;
 mod day2;
@@ -8,6 +9,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 
 fn main() {
     // day1();
@@ -17,7 +19,8 @@ fn main() {
     // day5();
     // day6();
     // day7();
-    day8();
+    // day8();
+    day9();
 }
 
 
@@ -80,4 +83,11 @@ fn day8() {
     let res_1 = day8::run_p1("puzzle_input/day8.txt");
     let res_2 = day8::run_p2("puzzle_input/day8.txt");
     println!("{:?}",(res_1,res_2));
+}
+fn day9() {
+    let test_res = day9::run("sample_data/day9.txt");
+    assert_eq!(test_res.0,114);
+    assert_eq!(test_res.1,2);
+    let res = day9::run("puzzle_input/day9.txt");
+    println!("{:?}",res);
 }

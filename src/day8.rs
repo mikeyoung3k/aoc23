@@ -97,7 +97,6 @@ fn lcm(counts: Vec<usize>) -> usize {
             return multiples[0]
         }
     }
-    panic!("No lcm found");
 }
 
 fn find_lowest(multiples: &Vec<usize>) -> usize {
