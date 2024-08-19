@@ -1,5 +1,6 @@
 name: Control
 description: Controlling issue.  May be split into sub-tasks
+projects: "prjtest"
 body:
   - type: textarea
     id: requirements
